@@ -1,5 +1,6 @@
 const User = require('../models/userModel');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
+
 
 const getUserProfile = (req, res) => {
     const userId = req.user.id; // Ensure this is set correctly from your auth middleware
