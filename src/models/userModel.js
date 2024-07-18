@@ -2,9 +2,9 @@ const db = require('../config/dbConfig');
 
 const User = {
     create: (userData, callback) => {
-        const { firstName, lastName, mobileNumber, password } = userData;
-        const query = 'CALL InsertUser(?, ?, ?, ?)';
-        db.query(query, [firstName, lastName, mobileNumber, password], callback);
+        const { firstName, lastName, mobileNumber, password, createdBy } = userData;
+        const query = 'CALL InsertUser(?, ?, ?, ?, ?)';
+        db.query(query, [firstName, lastName, mobileNumber, password, createdBy], callback);
     },
 
     findByMobileNumber: (mobileNumber, callback) => {
@@ -18,9 +18,9 @@ const User = {
     },
 
     update: (id, userData, callback) => {
-        const { firstName, lastName, mobileNumber } = userData;
-        const query = 'CALL UpdateUser(?, ?, ?, ?)';
-        db.query(query, [id, firstName, lastName, mobileNumber], callback);
+        const { firstName, lastName, mobileNumber, updatedBy } = userData;
+        const query = 'CALL UpdateUser(?, ?, ?, ?, ?)';
+        db.query(query, [id, firstName, lastName, mobileNumber, updatedBy], callback);
     },
 
     delete: (id, callback) => {

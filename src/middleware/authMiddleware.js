@@ -2,7 +2,6 @@ const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
 const authMiddleware = (req, res, next) => {
-    // Check if the Authorization header is present
     const token = req.headers['authorization']?.replace('Bearer ', '');
 
     if (!token) {
