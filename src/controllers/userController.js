@@ -1,7 +1,7 @@
 const User = require('../models/userModel');
 const bcrypt = require('bcryptjs');
 
-// Create a new user
+
 const createUser = (req, res) => {
     const { firstName, lastName, mobileNumber, password, createdBy } = req.body;
 
@@ -17,9 +17,9 @@ const createUser = (req, res) => {
     });
 };
 
-// Retrieve user profile by ID
+
 const getUserProfile = (req, res) => {
-    const userId = req.user.id; // Make sure this is set correctly from your auth middleware
+    const userId = req.user.id; 
 
     User.findById(userId, (err, results) => {
         if (err) {
