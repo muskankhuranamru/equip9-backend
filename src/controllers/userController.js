@@ -1,11 +1,9 @@
 const User = require('../models/userModel');
 const bcrypt = require('bcryptjs');
 
-
+// Create user
 const createUser = (req, res) => {
     const { firstName, lastName, mobileNumber, password, createdBy } = req.body;
-
-    // Hash the password before storing it
     const hashedPassword = bcrypt.hashSync(password, 10);
 
     User.create({ firstName, lastName, mobileNumber, password: hashedPassword, createdBy }, (err, results) => {
@@ -17,7 +15,7 @@ const createUser = (req, res) => {
     });
 };
 
-
+// Get user profile
 const getUserProfile = (req, res) => {
     const userId = req.user.id; 
 
@@ -37,10 +35,10 @@ const getUserProfile = (req, res) => {
 
 // Update user details
 const updateUser = (req, res) => {
-    const userId = req.params.id;
-    const { firstName, lastName, mobileNumber, updatedBy } = req.body;
+    const { mobileNumber } = req.params;
+    const { firstName, lastName, updatedBy } = req.body;
 
-    User.update(userId, { firstName, lastName, mobileNumber, updatedBy }, (err, results) => {
+    User.updateByMobileNumber(mobileNumber, { firstName, lastName, updatedBy }, (err, results) => {
         if (err) {
             console.error('Error updating user:', err);
             return res.status(500).json({ message: 'Error updating user' });
@@ -51,9 +49,9 @@ const updateUser = (req, res) => {
 
 // Delete a user
 const deleteUser = (req, res) => {
-    const userId = req.params.id;
+    const { mobileNumber } = req.params;
 
-    User.delete(userId, (err, results) => {
+    User.deleteByMobileNumber(mobileNumber, (err, results) => {
         if (err) {
             console.error('Error deleting user:', err);
             return res.status(500).json({ message: 'Error deleting user' });

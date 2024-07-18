@@ -17,15 +17,15 @@ const User = {
         db.query(query, [id], callback);
     },
 
-    update: (id, userData, callback) => {
-        const { firstName, lastName, mobileNumber, updatedBy } = userData;
-        const query = 'CALL UpdateUser(?, ?, ?, ?, ?)';
-        db.query(query, [id, firstName, lastName, mobileNumber, updatedBy], callback);
+    updateByMobileNumber: (mobileNumber, userData, callback) => {
+        const { firstName, lastName, updatedBy } = userData;
+        const query = 'CALL UpdateUserByMobileNumber(?, ?, ?, ?)';
+        db.query(query, [mobileNumber, firstName, lastName, updatedBy], callback);
     },
 
-    delete: (id, callback) => {
-        const query = 'CALL DeleteUser(?)';
-        db.query(query, [id], callback);
+    deleteByMobileNumber: (mobileNumber, callback) => {
+        const query = 'CALL DeleteUserByMobileNumber(?)';
+        db.query(query, [mobileNumber], callback);
     }
 };
 

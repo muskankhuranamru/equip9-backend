@@ -7,12 +7,10 @@ const authMiddleware = require('../middleware/authMiddleware');
 router.get('/profile', authMiddleware, getUserProfile);
 
 // Route to update user details, requires authentication
-router.put('/profile/:id', authMiddleware, updateUser);
+router.put('/profile', authMiddleware, updateUser);
 
 // Route to delete a user, requires authentication
-router.delete('/profile/:id', authMiddleware, deleteUser);
+router.delete('/profile', authMiddleware, deleteUser);
 
-// Route to find user by mobile number
-router.get('/users/:mobileNumber', findUserByMobileNumber);
 
 module.exports = router;
